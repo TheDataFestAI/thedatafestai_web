@@ -12,7 +12,10 @@
     ```
 3. Add/Modify the Code and Push to GitHub:
     ```shell
+    git remote add origin https://github.com/TheDataFestAI/thedatafestai_web.git
+    git remote set-url origin https://<user_name>:<access_token>@github.com/TheDataFestAI/<repo_name>.git
+    
     git add .
     git commit -m <message>
-    git push -u main origin 
+    git push -u origin main 
     ```
