@@ -6,4 +6,7 @@ class PythonLearningPage(WebPage):
         pass
     
     def write(self):
+        st.title("Python Learning", help="https://www.python.org/")            
+        
         st.write("Python Learning Page")
+        
