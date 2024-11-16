@@ -6,7 +6,7 @@ from ..page_utils import WebPage
 
 PAGE_MAP: Dict[str, Type[WebPage]] = {
     "Home": HomePage,
-    "Python Module": PythonLearningPage
+    "Python Learning Module": PythonLearningPage
 }
 
 __all__ = ["PAGE_MAP"]
