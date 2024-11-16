@@ -43,4 +43,4 @@
 2. sample streamlit web app: https://github.com/okld/streamlit-gallery/tree/main
 3. Sample Streamlit Folder Structure: https://github.com/ash2shukla/streamlit-heroku/
 4. Top Navbar: https://pypi.org/project/hydralit-components/
-5. 
+5. emoji: https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
