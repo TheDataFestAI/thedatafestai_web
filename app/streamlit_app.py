@@ -4,10 +4,18 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     
 def login():
-    if st.button("Log In"):
-        st.snow()
-        st.session_state.logged_in = True
-        st.rerun()
+    st.snow()
+    st.markdown("### Please **Log In**:")
+    col1, col2, col3 = st.columns([2, 2, 2])
+    with col1:
+        st.text_input("Full Name")
+        if st.button("Log In"):
+            st.session_state.logged_in = True
+            st.rerun()
+    with col2:
+        st.text_input("Mobile Number")
+    with col3:
+        st.text_input("Email Address")
         
 def logout():
     if st.button("Log Out"):
@@ -36,8 +44,10 @@ login_page = st.Page(login, title="Log In", icon=":material/login:")
 logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 
 # Multiple Web Pages 
-home = st.Page("home_page.py", title="Home", icon=":material/thumb_up:", default=True)
-python_abstruct_page = st.Page("learning_module/python_abstruct_class.py", title="Python Abstruct Class", icon=":material/thumb_up:")
+home = st.Page("others/home_page.py", title="Home", icon=":material/thumb_up:", default=True)
+python_abstruct_page = st.Page("learning_module/python_module/python_abstruct_class.py", 
+                               title="Python Abstruct Class", 
+                               icon=":material/thumb_up:")
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 developer_details = st.Page("others/developer_details_page.py", title="Developer Details", icon=":material/thumb_up:")
 
@@ -48,7 +58,7 @@ if st.session_state.logged_in:
             "⚓ Python Learning Module": [python_abstruct_page],
             "✨ Finance_Module": [finance_home_page],
             "🎈 Others": [developer_details]
-        }
+        }        
     )
 else:
     # pg = st.navigation([login_page])
@@ -59,3 +69,4 @@ else:
     )
     
 pg.run()
+    
