@@ -35,7 +35,7 @@
 
 # Step 3: Run the code:
     ```shell
-    streamlit run .\app\main.py
+    streamlit run .\app\streamlit_app.py
     ```
 
 # Supporting Document:
@@ -43,4 +43,10 @@
 2. sample streamlit web app: https://github.com/okld/streamlit-gallery/tree/main
 3. Sample Streamlit Folder Structure: https://github.com/ash2shukla/streamlit-heroku/
 4. Top Navbar: https://pypi.org/project/hydralit-components/
-5. 
+5. emoji: https://streamlit-emoji-shortcodes-streamlit-app-gwckff.streamlit.app/
+
+# Streamlit App Development Ref: 
+1. https://docs.streamlit.io/get-started/tutorials/create-an-app
+2. https://docs.streamlit.io/develop/concepts/multipage-apps
+	1. https://docs.streamlit.io/develop/concepts/multipage-apps/page-and-navigation
+	2. https://docs.streamlit.io/develop/concepts/multipage-apps/pages-directory
