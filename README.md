@@ -4,6 +4,7 @@
 
 https://thedatafestai.com will be available soon.
 
+Beta version is available at [Click Here](https://thedatafestai.streamlit.app/)
 
 # Developer Details:
 

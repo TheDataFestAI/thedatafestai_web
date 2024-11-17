@@ -1,4 +1,4 @@
-# Python Abstract Class
+## Abstract Class
 
 ```python
 from abc import ABC, abstractmethod
@@ -10,7 +10,7 @@ class Car(ABC):
         pass
 ```
 
-## Incorrect Way
+### Incorrect Way
 ```python
 class SUV_Car(Car):
     def __init__(self):
@@ -22,7 +22,7 @@ breeza = SUV_Car()
 output: 
 TypeError: Can't instantiate abstract class SUV_Car with abstract method car_body
 
-## Correct Way
+### Correct Way
 
 ```python
 class sedan_Car(Car):

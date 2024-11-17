@@ -10,6 +10,7 @@ class PythonLearningPage(WebPage):
     
     def write(self):
         st.title("Python Learning", help="https://www.python.org/")
+        st.html("<hr>")
         
         # FILTER_SHARE = re.compile(r"^.*\[share_\w+\].*$", re.MULTILINE)
         # # content = requests.get(f"https://raw.githubusercontent.com/TheDataFestAI/thedatafestai_web/main/developer_guide.md").text
