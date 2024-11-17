@@ -45,20 +45,26 @@ logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 
 # Multiple Web Pages 
 home = st.Page("others/home_page.py", title="Home", icon=":material/thumb_up:", default=True)
-python_abstruct_page = st.Page("learning_module/python_module/python_abstruct_class.py", 
-                               title="Python Abstruct Class", 
-                               icon=":material/thumb_up:")
-finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 developer_details = st.Page("others/developer_details_page.py", title="Developer Details", icon=":material/thumb_up:")
+
+python_abstract_page = st.Page("learning_module/python_module/python_abstract_class.py", 
+                               title="Python Abstract Class", 
+                               icon=":material/call_made:")
+python_global_local_variable_page = st.Page("learning_module/python_module/python_global_local_variable.py", 
+                                            title="Python Variable", 
+                                            icon=":material/call_made:")
+
+finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
 if st.session_state.logged_in:
     pg = st.navigation(
         {
-            "🌏 Account": [home, logout_page],
-            "⚓ Python Learning Module": [python_abstruct_page],
-            "✨ Finance_Module": [finance_home_page],
-            "🎈 Others": [developer_details]
-        }        
+            "🏨 Account": [home, logout_page],
+            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page],
+            "💲 Finance_Module": [finance_home_page],
+            "⚓ Others": [developer_details]
+        },
+        # position="hidden"      
     )
 else:
     # pg = st.navigation([login_page])
@@ -67,6 +73,6 @@ else:
             "Account": [home, login_page]
         }
     )
-    
+
 pg.run()
     
