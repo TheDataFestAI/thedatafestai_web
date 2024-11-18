@@ -1,4 +1,4 @@
-## Global & Local Python Variable
+## Global & Nonlocal Python Variable
 
 Ref: https://www.geeksforgeeks.org/global-local-variables-python/
 

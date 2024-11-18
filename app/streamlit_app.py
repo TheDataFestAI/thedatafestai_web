@@ -1,4 +1,8 @@
 import streamlit as st
+from learning_module.python_module_pages import (
+    python_abstract_class_pg,
+    python_global_local_variable_pg    
+)
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -47,10 +51,10 @@ logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 home = st.Page("others/home_page.py", title="Home", icon=":material/thumb_up:", default=True)
 developer_details = st.Page("others/developer_details_page.py", title="Developer Details", icon=":material/thumb_up:")
 
-python_abstract_page = st.Page("learning_module/python_module/python_abstract_class.py", 
+python_abstract_page = st.Page(python_abstract_class_pg, 
                                title="Python Abstract Class", 
                                icon=":material/call_made:")
-python_global_local_variable_page = st.Page("learning_module/python_module/python_global_local_variable.py", 
+python_global_local_variable_page = st.Page(python_global_local_variable_pg, 
                                             title="Python Variable", 
                                             icon=":material/call_made:")
 
