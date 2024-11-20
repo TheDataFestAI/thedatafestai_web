@@ -27,7 +27,7 @@ def logout():
         st.rerun()
 
 st.set_page_config(page_title="TheDataFestAI",
-                   page_icon="https://streamlit.io/favicon.svg",
+                   page_icon="🛎️",
                    layout="wide",
                    menu_items={
                        'Get Help': "https://github.com/TheDataFestAI/thedatafestai_web/discussions",
@@ -65,7 +65,9 @@ if st.session_state.logged_in:
         {
             "🏨 Account": [home, logout_page],
             "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page],
+            "🪐 Data Science": [],
             "💲 Finance_Module": [finance_home_page],
+            "*️⃣ Data Links": []
             "⚓ Others": [developer_details]
         },
         # position="hidden"      

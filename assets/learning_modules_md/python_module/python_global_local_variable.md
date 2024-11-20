@@ -16,7 +16,7 @@ Now, what if there is a Python variable with the same name initialized inside a 
 
 ### Without Global and Local Variable:
 
-#### Sample 1: Global Scope variable can be accessible inside and outside function
+#### Understand 1: Global Scope variable can be accessible inside and outside function
 
 **Note:** As there are no locals, the value from the globals will be used but make sure both the local and the global variables should have same name.
 
@@ -33,7 +33,7 @@ func()
 outside func, a: 10 <br>
 inside func, a: 10
 
-#### Sample 2: Global Scope variable can be accessible from inside and outside function but can't be editable without defining
+#### Understand 2: Global Scope variable can be accessible from inside and outside function but can't be editable without defining
 
 ```python
 # This function uses global variable s
@@ -49,7 +49,7 @@ f()
 output: <br>
 UnboundLocalError: local variable 's' referenced before assignment
 
-#### Sample 3:
+#### Understand 3: Uses of "Global" Keyword
 
 ```python
 a = 1
@@ -88,7 +88,7 @@ global :  1 <br>
 Inside h() :  3 <br>
 global :  3 <br>
 
-#### Sample 4:
+#### Understand 4: Variable Scope and usage for nested child function 
 
 ```python
 # Global scope
@@ -141,4 +141,5 @@ output: <br>
 inner: nonlocal <br>
 outer: nonlocal <br>
 
-#### Can't use global and nonlocal at same time
+#### All Understandings:
+1. Can't use global and nonlocal at same time
