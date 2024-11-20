@@ -67,7 +67,7 @@ if st.session_state.logged_in:
             "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page],
             "🪐 Data Science": [],
             "💲 Finance_Module": [finance_home_page],
-            "*️⃣ Data Links": []
+            "*️⃣ Data Links": [],
             "⚓ Others": [developer_details]
         },
         # position="hidden"      
