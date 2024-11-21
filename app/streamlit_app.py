@@ -1,4 +1,9 @@
 import streamlit as st
+from learning_module.python_module_pages import (
+    python_abstract_class_pg,
+    python_global_local_variable_pg,
+    python_decorator_pg 
+)
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -23,7 +28,7 @@ def logout():
         st.rerun()
 
 st.set_page_config(page_title="TheDataFestAI",
-                   page_icon="https://streamlit.io/favicon.svg",
+                   page_icon="🛎️",
                    layout="wide",
                    menu_items={
                        'Get Help': "https://github.com/TheDataFestAI/thedatafestai_web/discussions",
@@ -47,12 +52,15 @@ logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 home = st.Page("others/home_page.py", title="Home", icon=":material/thumb_up:", default=True)
 developer_details = st.Page("others/developer_details_page.py", title="Developer Details", icon=":material/thumb_up:")
 
-python_abstract_page = st.Page("learning_module/python_module/python_abstract_class.py", 
+python_abstract_page = st.Page(python_abstract_class_pg, 
                                title="Python Abstract Class", 
                                icon=":material/call_made:")
-python_global_local_variable_page = st.Page("learning_module/python_module/python_global_local_variable.py", 
+python_global_local_variable_page = st.Page(python_global_local_variable_pg, 
                                             title="Python Variable", 
                                             icon=":material/call_made:")
+python_decorator_page = st.Page(python_decorator_pg, 
+                                title="Python Decorator", 
+                                icon=":material/call_made:")
 
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
@@ -60,8 +68,10 @@ if st.session_state.logged_in:
     pg = st.navigation(
         {
             "🏨 Account": [home, logout_page],
-            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page],
+            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page, python_decorator_page],
+            "🪐 Data Science": [],
             "💲 Finance_Module": [finance_home_page],
+            "*️⃣ Data Links": [],
             "⚓ Others": [developer_details]
         },
         # position="hidden"      
