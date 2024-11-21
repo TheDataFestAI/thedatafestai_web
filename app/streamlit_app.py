@@ -1,7 +1,8 @@
 import streamlit as st
 from learning_module.python_module_pages import (
     python_abstract_class_pg,
-    python_global_local_variable_pg    
+    python_global_local_variable_pg,
+    python_decorator_pg 
 )
 
 if "logged_in" not in st.session_state:
@@ -57,6 +58,9 @@ python_abstract_page = st.Page(python_abstract_class_pg,
 python_global_local_variable_page = st.Page(python_global_local_variable_pg, 
                                             title="Python Variable", 
                                             icon=":material/call_made:")
+python_decorator_page = st.Page(python_decorator_pg, 
+                                title="Python Decorator", 
+                                icon=":material/call_made:")
 
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
@@ -64,7 +68,7 @@ if st.session_state.logged_in:
     pg = st.navigation(
         {
             "🏨 Account": [home, logout_page],
-            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page],
+            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page, python_decorator_page],
             "🪐 Data Science": [],
             "💲 Finance_Module": [finance_home_page],
             "*️⃣ Data Links": [],

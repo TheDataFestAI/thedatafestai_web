@@ -18,3 +18,8 @@ def python_global_local_variable_pg():
     st.markdown((Path(__file__).parents[2]/"assets/learning_modules_md/python_module/python_global_local_variable.md").read_text(),
             unsafe_allow_html=True)
     
+def python_decorator_pg():
+    st.title("TheDataFestAI - Python Decorator", anchor=False, help="https://www.geeksforgeeks.org/decorators-in-python/")
+    st.html("<hr>")
+    st.markdown((Path(__file__).parents[2]/"assets/learning_modules_md/python_module/python_decorator.md").read_text(),
+            unsafe_allow_html=True)

@@ -1,9 +1,9 @@
 import pandas as pd
 from pathlib import Path
 
-def read_excel_sheet(excel_file_path, sheet_name, header=1):
+def read_excel_sheet(excel_file_path, sheet_name, header=0):
     df = pd.read_excel(excel_file_path, sheet_name=sheet_name, header=header)
-    print(df.to_json())
+    return df.to_json()
     
 
 if __name__ == "__main__":
