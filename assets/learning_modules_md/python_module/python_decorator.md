@@ -65,14 +65,23 @@ import math
 def calculate_duration(func):
     def inner1(*args, **kwargs):
         # storing time before function execution
+        start_time = time.time()
         begin = strftime("%a, %d %b %Y %H:%M:%S", gmtime(time.time()))
         
         returned_value = func(*args, **kwargs)
         
         # storing time after function execution
+        end_time = time.time()
         end = strftime("%a, %d %b %Y %H:%M:%S", gmtime(time.time()))
+
+        seconds_elapsed = end_time - start_time
+        hours, rest = divmod(seconds_elapsed, 3600)
+        minutes, seconds = divmod(rest, 60)
+        r_minutes = round(minutes, 2)
+        r_seconds = round(seconds, 2)
         
         print(f"total time took for {func.__name__}: {begin} and {end}")
+        print(f"Total execution time duration: {hours} hrs {r_minutes} mins {r_seconds} secs")
         return returned_value
     return inner1
 
@@ -82,10 +91,10 @@ def factorial(num):
     return math.factorial(num)
     
 print(factorial(10))
-
 ```
 output: <br>
 total time took for factorial: Thu, 21 Nov 2024 17:34:20 and Thu, 21 Nov 2024 17:34:22 <br>
+Total execution time duration: 0.0 hrs 0.0 mins 2.0 secs <br>
 3628800 <br>
 
 ### Chaining Decorators:

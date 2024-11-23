@@ -1,8 +1,10 @@
 import streamlit as st
 from learning_module.python_module_pages import (
-    python_abstract_class_pg,
+    python_class_pg,
     python_global_local_variable_pg,
-    python_decorator_pg 
+    python_decorator_pg,
+    python_unittest_pg,
+    python_pandas_pg 
 )
 
 if "logged_in" not in st.session_state:
@@ -13,16 +15,18 @@ def login():
     st.markdown("### Please **Log In**:")
     col1, col2, col3 = st.columns([2, 2, 2])
     with col1:
-        st.text_input("Full Name")
+        st.text_input("Full Name", placeholder="Ramesh Gupta")
         if st.button("Log In"):
             st.session_state.logged_in = True
             st.rerun()
     with col2:
-        st.text_input("Mobile Number")
+        st.text_input("Mobile Number", placeholder="88****6464")
     with col3:
-        st.text_input("Email Address")
+        st.text_input("Email Address", placeholder="something@gmail.com")
         
 def logout():
+    st.markdown("### Do you want to logout from TheDataFestAI?")
+    st.html("<h4>If yes, then click on below button -</h4>")
     if st.button("Log Out"):
         st.session_state.logged_in = False
         st.rerun()
@@ -52,28 +56,32 @@ logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 home = st.Page("others/home_page.py", title="Home", icon=":material/thumb_up:", default=True)
 developer_details = st.Page("others/developer_details_page.py", title="Developer Details", icon=":material/thumb_up:")
 
-python_abstract_page = st.Page(python_abstract_class_pg, 
-                               title="Python Abstract Class", 
-                               icon=":material/call_made:")
-python_global_local_variable_page = st.Page(python_global_local_variable_pg, 
-                                            title="Python Variable", 
-                                            icon=":material/call_made:")
-python_decorator_page = st.Page(python_decorator_pg, 
-                                title="Python Decorator", 
-                                icon=":material/call_made:")
+python_class_page = st.Page(python_class_pg, title="Python Class", icon=":material/call_made:")
+python_global_local_variable_page = st.Page(python_global_local_variable_pg, title="Python Global/Nonlocal Variable", icon=":material/call_made:")
+python_decorator_page = st.Page(python_decorator_pg, title="Python Decorator", icon=":material/call_made:")
+python_unittest_page = st.Page(python_unittest_pg, title="Python Unittest", icon=":material/call_made:")
+python_pandas_page = st.Page(python_pandas_pg, title="Pandas", icon=":material/call_made:")
 
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
-data_links_page = st.Page("others/data_links_page.py", title="Data Links", icon=":material/thumb_up:")
+create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:")
+data_links_page = st.Page("others/data_links_page.py", title="Free Data Source Links", icon=":material/thumb_up:")
+
 
 if st.session_state.logged_in:
     pg = st.navigation(
         {
-            "🏨 Account": [logout_page, home, developer_details],
-            "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page, python_decorator_page],
-            "🪐 Data Science": [],
-            "💲 Finance_Module": [finance_home_page],
-            "*️⃣ Data Links": [data_links_page]
+            "🏚️ Account -": [logout_page, home, developer_details],
+            "🐍 Python Learning Module -": [python_class_page, 
+                                           python_global_local_variable_page, 
+                                           python_decorator_page,
+                                           python_unittest_page,
+                                           python_pandas_page
+                                         ],
+            "🪐 Data Science -": [],
+            "💲 Finance_Module -": [finance_home_page],
+            "🎲 Data Sources -": [data_links_page],
+            "🎯 Apps -": [create_your_own_cv_page]
         },
         # position="hidden"      
     )
