@@ -13,4 +13,4 @@ Beta version is available at [Click Here](https://thedatafestai.streamlit.app/)
 
 
 # Follow the **Developer Guide** to contribute:
-[Click here](developer_guide.md)
+[Click here](https://github.com/TheDataFestAI/thedatafestai_web/blob/main/developer_guide.md)

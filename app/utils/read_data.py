@@ -3,7 +3,7 @@ from pathlib import Path
 
 def read_excel_sheet(excel_file_path, sheet_name, header=0):
     df = pd.read_excel(excel_file_path, sheet_name=sheet_name, header=header)
-    return df.to_json()
+    return df
     
 
 if __name__ == "__main__":

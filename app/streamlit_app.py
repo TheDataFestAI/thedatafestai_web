@@ -64,15 +64,16 @@ python_decorator_page = st.Page(python_decorator_pg,
 
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
+data_links_page = st.Page("others/data_links_page.py", title="Data Links", icon=":material/thumb_up:")
+
 if st.session_state.logged_in:
     pg = st.navigation(
         {
-            "🏨 Account": [home, logout_page],
+            "🏨 Account": [logout_page, home, developer_details],
             "🏷️ Python Learning Module": [python_abstract_page, python_global_local_variable_page, python_decorator_page],
             "🪐 Data Science": [],
             "💲 Finance_Module": [finance_home_page],
-            "*️⃣ Data Links": [],
-            "⚓ Others": [developer_details]
+            "*️⃣ Data Links": [data_links_page]
         },
         # position="hidden"      
     )
@@ -80,7 +81,7 @@ else:
     # pg = st.navigation([login_page])
     pg = st.navigation(
         {
-            "Account": [home, login_page]
+            "Account": [login_page, home, developer_details]
         }
     )
 
