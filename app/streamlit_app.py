@@ -9,6 +9,9 @@ from learning_module.python_module_pages import (
 from learning_module.devops_module_pages import (
     devops_docker_pg
 )
+from learning_module.ds_module_pages import (
+    ds_home_pg
+)
 
 # print(st.session_state)
 if "logged_in" not in st.session_state:
@@ -68,7 +71,9 @@ python_pandas_page = st.Page(python_pandas_pg, title="Pandas", icon=":material/c
 
 devops_docker_page = st.Page(devops_docker_pg, title="Docker", icon=":material/call_made:")
 
-finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
+ds_home_page = st.Page(ds_home_pg, title="Data Science - Home", icon=":material/call_made:")
+
+finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/call_made:")
 
 create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:")
 data_links_page = st.Page("others/data_links_page.py", title="Free Data Source Links", icon=":material/thumb_up:")
@@ -85,7 +90,7 @@ if st.session_state.logged_in:
                                            python_pandas_page
                                          ],
             "🎢 Dev-Ops -": [devops_docker_page],
-            "🪐 Data Science -": [],
+            "🪐 Data Science -": [ds_home_page],
             "💲 Finance_Module -": [finance_home_page],
             "🎲 Data Sources -": [data_links_page],
             "🎯 Apps -": [create_your_own_cv_page]
