@@ -6,6 +6,9 @@ from learning_module.python_module_pages import (
     python_unittest_pg,
     python_pandas_pg 
 )
+from learning_module.devops_module_pages import (
+    devops_docker_pg
+)
 
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
@@ -62,6 +65,8 @@ python_decorator_page = st.Page(python_decorator_pg, title="Python Decorator", i
 python_unittest_page = st.Page(python_unittest_pg, title="Python Unittest", icon=":material/call_made:")
 python_pandas_page = st.Page(python_pandas_pg, title="Pandas", icon=":material/call_made:")
 
+devops_docker_page = st.Page(devops_docker_pg, title="Docker", icon=":material/call_made:")
+
 finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/thumb_up:")
 
 create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:")
@@ -78,6 +83,7 @@ if st.session_state.logged_in:
                                            python_unittest_page,
                                            python_pandas_page
                                          ],
+            "🎢 Dev-Ops -": [devops_docker_page],
             "🪐 Data Science -": [],
             "💲 Finance_Module -": [finance_home_page],
             "🎲 Data Sources -": [data_links_page],
