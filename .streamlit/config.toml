@@ -1,2 +1,16 @@
+[client]
+showErrorDetails = false
+
+[server]
+port = 8080
+
+[browser]
+serverAddress = "localhost"
+serverPort = 8080
+
 [theme]
-base="dark"
+primaryColor = "#059ff2"
+backgroundColor = "#0c417a"
+secondaryBackgroundColor = "#06213d"
+textColor = "#cfcbc6"
+font = "serif"
