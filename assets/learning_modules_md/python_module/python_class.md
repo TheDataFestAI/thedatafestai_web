@@ -77,3 +77,11 @@ class sedan_Car(Car):
         
 breeza = sedan_Car()
 ```
+
+## Classmethod and Staticmethod
+
+
+
+```python
+
+```
