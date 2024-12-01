@@ -1,4 +1,28 @@
 import streamlit as st
+import pandas as pd
+from reportlab.lib.pagesizes import letter
+
+if "diy_cv_data" not in st.session_state:
+    diy_cv_data_df = pd.DataFrame({
+        "diy_cv_first_name": [],
+        "diy_cv_middle_name": [],
+        "diy_cv_last_name": []
+    })
+    st.session_state.diy_cv_data = diy_cv_data_df
+
+def add_cv_details():
+    new_diy_cv_personal_data_df = pd.DataFrame({
+        "diy_cv_first_name": [st.session_state.diy_cv_first_name],
+        "diy_cv_middle_name": [st.session_state.diy_cv_middle_name],
+        "diy_cv_last_name": [st.session_state.diy_cv_last_name]
+    })
+    
+    new_diy_cv_data_df = new_diy_cv_personal_data_df.copy()
+    
+    st.session_state.diy_cv_data = pd.concat([st.session_state.diy_cv_data, new_diy_cv_data_df])
+
+# Web Page Design
+# st.session_state.sidebar_state = "collapsed" if st.session_state.sidebar_state == "expanded" else "expanded" 
 
 st.title("TheDataFestAI - Create Your Own CV", anchor=False)
 st.html("<hr>")
@@ -8,9 +32,9 @@ st.markdown("## Fillup With Your Own Details -")
 # Personal Details
 st.html("<p>Provide Your Personal Details.</p>")
 col1, col2, col3 = st.columns([2,2,2])
-col1.text_input("First Name", placeholder="Ramesh")
-col2.text_input("Middle Name", placeholder="Mohan")
-col3.text_input("Last Name", placeholder="Gupta")
+col1.text_input("First Name", placeholder="Ramesh", key="diy_cv_first_name")
+col2.text_input("Middle Name", placeholder="Mohan", key="diy_cv_middle_name")
+col3.text_input("Last Name", placeholder="Gupta", key="diy_cv_last_name")
     
 col1, col2 = st.columns([2,4])
 col1.text_input("Primary Mobile Number", placeholder="88****6464")
@@ -32,15 +56,19 @@ col3.number_input("Yrs of Experience", step=1)
 
 # Education Details
 st.html("<p>Provide Your Education Details.</p>")
-for i in range(3):
+for i in range(5):
     if i == 0:
         edu_expander_name = "10th Standard"
     elif i == 1:
         edu_expander_name = "12th Standard"
-    else:
+    elif i == 2:
         edu_expander_name = "Bachelor's Degree"
+    elif i == 3:
+        edu_expander_name = "Master's Degree"
+    elif i == 4:
+        edu_expander_name = "PHD/Other Master's Degree"
         
-    with st.expander(f"Education Details - {edu_expander_name}",
+    with st.expander(f"Education Details - **{edu_expander_name}**",
                      expanded= True if i == 0 else False):
         col1, col2 = st.columns([4,2])
         col1.text_input("School/College Name", key ="edu_sch_clg_name_"+str(i))
@@ -73,6 +101,11 @@ if num_of_prev_organisation > 0:
             
             st.text_area("Provide Job Summary", key ="org_job_summary_"+str(i))
 
-col1, col2, col3 = st.columns([2,2,2])   
-col1.button("Generate CV")
+col1, col2, col3 = st.columns([2,2,2]) 
+
+col1.button("Generate CV", on_click=add_cv_details, key="diy_cv_submit")
 # submitted = st.form_submit_button("Submit")
+
+# Show submitted cv data
+# if st.button("diy_cv_submit"):
+st.dataframe(st.session_state.diy_cv_data)

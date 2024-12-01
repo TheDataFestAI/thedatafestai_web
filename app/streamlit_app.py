@@ -16,6 +16,8 @@ from learning_module.ds_module_pages import (
 # print(st.session_state)
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+# if "sidebar_state" not in st.session_state:
+#     st.session_state.sidebar_state = "expanded"
     
 def login():
     st.snow()
