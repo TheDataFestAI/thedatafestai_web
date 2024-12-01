@@ -283,7 +283,7 @@ In this case, you used patch() as a decorator and passed the target object’s p
 
 You also defined a new parameter, mock_requests, for the test function. patch() uses this parameter to pass the mocked object into your test. From there, you can modify the mock or make assertions as necessary. <br>
 
-#### Patching an Object’s Attributes
+#### Patching an Object's Attributes
 
 ```python
 # test_holidays.py

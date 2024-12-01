@@ -16,6 +16,8 @@ from learning_module.ds_module_pages import (
 # print(st.session_state)
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+# if "sidebar_state" not in st.session_state:
+#     st.session_state.sidebar_state = "expanded"
     
 def login():
     st.snow()
@@ -84,11 +86,11 @@ if st.session_state.logged_in:
         {
             "🏚️ Account -": [logout_page, home, developer_details],
             "🐍 Python Learning Module -": [python_class_page, 
-                                           python_global_local_variable_page, 
-                                           python_decorator_page,
-                                           python_unittest_page,
-                                           python_pandas_page
-                                         ],
+                                            python_global_local_variable_page, 
+                                            python_decorator_page,
+                                            python_unittest_page,
+                                            python_pandas_page
+                                            ],
             "🎢 Dev-Ops -": [devops_docker_page],
             "🪐 Data Science -": [ds_home_page],
             "💲 Finance_Module -": [finance_home_page],

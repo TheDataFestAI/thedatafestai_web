@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+<!DOCTYPE document SYSTEM "rml_1_0.dtd">
+<document filename="test_059_rotations.pdf" compression="1" invariant="1">
+<template pageSize="(595, 842)" leftMargin="72" showBoundary="0" title="Tagged" lang="en-GB" displayDocTitle="1">
+	<pageTemplate id="main">
+		<pageGraphics>
+			<setFont name="Helvetica-Bold" size="18"/>
+	        <drawString x="35" y="783">RML Example 59: Rotations</drawString>
+	        <setFont name="Helvetica-BoldOblique" size="12" />
+	    	<image file="logo_no_bar.png" preserveAspectRatio="1" x="488" y="749" width="72" height="72" alt_file="" required="no"/>
+	    	<image file="strapline.png" preserveAspectRatio="1" x="35" y="0" width="525"  alt_file="" required="no"/>
+			<setFont name="Helvetica-BoldOblique" size="18"/>
+			<setFont name="Helvetica" size="10"/>
+			<drawCenteredString x="297" y="36"><pageNumber countingFrom="1"/></drawCenteredString>
+		</pageGraphics>
+		<frame id="1" x1="35" y1="45" width="525" height="700"/>
+	</pageTemplate>
+</template>
+<stylesheet>
+    <initialize>
+    	<alias id="style.normal" value="style.Normal"/>
+    	<alias id="style.h1" value="style.H1"/>
+    	<alias id="style.h2" value="style.H2"/>
+    	<alias id="style.XPreNormal" value="style.Normal"/>
+    </initialize>
+	<paraStyle name="h1" fontName="Helvetica-Bold" fontSize="12" leading="14.4" spaceBefore="0.5 cm" />
+	<paraStyle name="h2" parent="h1" fontSize="11" leading="12.1" spaceBefore="0.5 cm" />
+	<paraStyle name="normal" fontName="Helvetica" fontSize="10" leading="12" spaceBefore="12" />
+</stylesheet>
+<para spaceBefore="15">We can place paragraphs on the page; this is at 1in from the page bottom and 15 points in.<br/>
+    We mark that position with a small blue cross before any translation &amp; rotation.</para>
+<graphicsMode>
+<crossMark x="580" y="1in" size="5" gap="1" color="blue" width="1"/>
+<translate dx="580" dy="1in"/>
+<rotate degrees="90"/>
+<placeXPre borderWidth="0.5" borderColor="blue" x="0" y="0" anchor="sw" width="1in" origin="local">Serial <span color="red">0012345</span></placeXPre>
+</graphicsMode>
+<para spaceBefore="15">
+We draw a multi-line para at 2.2in from the page bottom and 15 points in.<br/>
+We mark that position with a small green cross before any translation &amp; rotation.<br/>
+Note that the cross is at the SW corner of the paragraph if we disregard the rotation<br/>
+and that the paragraph grows upward.
+</para>
+<graphicsMode>
+<crossMark x="580" y="2.2in" size="5" gap="1" color="green" width="1"/>
+<translate dx="580" dy="2.2in"/>
+<rotate degrees="90"/>
+<placePara borderWidth="0.5" borderColor="green" x="0" y="0" anchor="sw" width="1in" origin="local">Serial <span color="red">0012345</span><br/>2023/12/14</placePara>
+</graphicsMode>
+</story>
+</document>
