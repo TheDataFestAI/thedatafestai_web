@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-from reportlab.lib.pagesizes import letter
+from utils.write_data import generate_pdf
+
 
 if "diy_cv_data" not in st.session_state:
     diy_cv_data_df = pd.DataFrame({
@@ -18,8 +19,14 @@ def add_cv_details():
     })
     
     new_diy_cv_data_df = new_diy_cv_personal_data_df.copy()
-    
     st.session_state.diy_cv_data = pd.concat([st.session_state.diy_cv_data, new_diy_cv_data_df])
+    
+    cv_content = str(st.session_state.diy_cv_data.to_json(orient='records'))
+    st.session_state.cv_pdf_out_file_name = generate_pdf(file_name="sample_cv_1.pdf", content=cv_content)
+    # st.html(f'<a href="{out_file_name}" download="{out_file_name.split("/")[-1]}">Download</a>')
+    # st.html(f'<a href="" download="sample_cv.pdf" target="_blank">Download</a>')
+    
+
 
 # Web Page Design
 # st.session_state.sidebar_state = "collapsed" if st.session_state.sidebar_state == "expanded" else "expanded" 
@@ -102,10 +109,20 @@ if num_of_prev_organisation > 0:
             st.text_area("Provide Job Summary", key ="org_job_summary_"+str(i))
 
 col1, col2, col3 = st.columns([2,2,2]) 
-
 col1.button("Generate CV", on_click=add_cv_details, key="diy_cv_submit")
 # submitted = st.form_submit_button("Submit")
+col2.write("")
+col3.write("")
 
-# Show submitted cv data
-# if st.button("diy_cv_submit"):
+col1, col2, col3 = st.columns([2,2,2]) 
+with col1:  
+    if st.session_state.cv_pdf_out_file_name:
+        with open(st.session_state.cv_pdf_out_file_name, "rb") as pdf_fp:
+            btn = st.download_button(
+                label="Download CV in PDF",
+                data = pdf_fp,
+                file_name="sample_cv.pdf",
+                mime="application/octet-stream"
+            )
+
 st.dataframe(st.session_state.diy_cv_data)
