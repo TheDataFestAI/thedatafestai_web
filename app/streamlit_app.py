@@ -16,6 +16,10 @@ from learning_module.ds_module_pages import (
 # print(st.session_state)
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+
+if "cv_pdf_out_file_name" not in st.session_state:
+    st.session_state.cv_pdf_out_file_name = False
+    
 # if "sidebar_state" not in st.session_state:
 #     st.session_state.sidebar_state = "expanded"
     
@@ -38,6 +42,7 @@ def logout():
     st.html("<h4>If yes, then click on below button -</h4>")
     if st.button("Log Out"):
         st.session_state.logged_in = False
+        st.session_state.cv_pdf_out_file_name = False
         st.rerun()
 
 st.set_page_config(page_title="TheDataFestAI",
