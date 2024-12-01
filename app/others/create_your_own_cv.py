@@ -3,6 +3,10 @@ from pathlib import Path
 import pandas as pd
 
 from utils.write_data import generate_pdf
+from utils.backblaze_bucket_read_write import (
+    upload_file_into_backblaze, 
+    download_file_from_backblaze
+)
 
 
 if "diy_cv_data" not in st.session_state:
@@ -24,7 +28,8 @@ def add_cv_details():
     st.session_state.diy_cv_data = pd.concat([st.session_state.diy_cv_data, new_diy_cv_data_df])
     
     cv_content = str(st.session_state.diy_cv_data.to_json(orient='records'))
-    st.session_state.cv_pdf_out_file_name = generate_pdf(file_name="sample_cv.pdf", content=cv_content)
+    # st.session_state.cv_pdf_out_file_name = generate_pdf(file_name="sample_cv.pdf", content=cv_content)
+    st.session_state.cv_pdf_out_file_name = upload_file_into_backblaze(file_name="sample_cv.pdf", content=cv_content)
     print(f"st.session_state.cv_pdf_out_file_name: {st.session_state.cv_pdf_out_file_name}")
     # st.html(f'<a href="{out_file_name}" download="{out_file_name.split("/")[-1]}">Download</a>')
     # st.html(f'<a href="" download="sample_cv.pdf" target="_blank">Download</a>')
@@ -111,14 +116,14 @@ if num_of_prev_organisation > 0:
             st.text_area("Provide Job Summary", key ="org_job_summary_"+str(i))
 
 col1, col2, col3 = st.columns([2,2,2]) 
-col1.button("Generate CV", on_click=add_cv_details, key="diy_cv_submit")
+submitted = col1.button("Generate CV", on_click=add_cv_details, key="diy_cv_submit")
 # submitted = st.form_submit_button("Submit")
 col2.write("")
 col3.write("")
 
 col1, col2, col3 = st.columns([2,2,2]) 
 with col1:  
-    if st.session_state.cv_pdf_out_file_name:
+    if submitted and st.session_state.cv_pdf_out_file_name:
         with open(st.session_state.cv_pdf_out_file_name, "rb") as pdf_fp:
             btn = st.download_button(
                 label="Download CV in PDF",
@@ -126,5 +131,12 @@ with col1:
                 file_name="sample_cv.pdf",
                 mime="application/octet-stream"
             )
+        
+        # btn = st.download_button(
+        #     label="Download CV in PDF",
+        #     data = download_file_from_backblaze(),
+        #     file_name="sample_cv.pdf",
+        #     mime="application/octet-stream"
+        # )
 
 # st.dataframe(st.session_state.diy_cv_data)
