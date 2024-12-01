@@ -6,8 +6,8 @@ from utils.finance_calculator import emi_calculator, loan_eligibility
 st.title("Finance Module", anchor=False)
 st.html("<hr>")
 
-with st.expander("Loan Eligibility:", expanded=True):
-    st.html("<h3>Please use below Loan Eligibility Calculator </h3>")
+with st.expander("Loan Eligibility:"):
+    st.html("<h5>Please use below Loan Eligibility Calculator </h5>")
     with st.form("loan_eligibility_calculator"):
         monthly_net_salary = st.number_input("Your Monthly Net Salary", value=80000)
         loan_eligibility_calculator_submitted = st.form_submit_button("Submit")
@@ -30,7 +30,7 @@ with st.expander("Loan Eligibility:", expanded=True):
         
 
 with st.expander("EMI Calculator:"):
-    st.html("<h3>Please use below EMI Calculator for any kind of loan <br><br>**Home loan, Car loan, Personal loan </h3>")
+    st.html("<h5>Please use below EMI Calculator for any kind of loan <br><br>**Home loan, Car loan, Personal loan </h5>")
     with st.form("emi_calculator"):
         # st.write("EMI Calculator:")
         principle_amount = st.number_input("Principle Amount for Loan", value=3000000)

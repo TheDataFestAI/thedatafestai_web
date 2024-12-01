@@ -1,0 +1,7 @@
+div[data-testid="stExpander"] details summary span div[data-testid="stMarkdownContainer"] p {
+    font-size: 1.5rem;
+}
+
+/* div[data-testid="stExpander"] details:hover summary{
+    background-color: rgba(17, 6, 3, 0.1);
+} */

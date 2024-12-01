@@ -1,4 +1,5 @@
 import streamlit as st
+from pathlib import Path
 from learning_module.python_module_pages import (
     python_class_pg,
     python_global_local_variable_pg,
@@ -22,6 +23,10 @@ if "cv_pdf_out_file_name" not in st.session_state:
     
 # if "sidebar_state" not in st.session_state:
 #     st.session_state.sidebar_state = "expanded"
+
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     
 def login():
     st.snow()
@@ -55,13 +60,14 @@ st.set_page_config(page_title="TheDataFestAI",
                    }
                    )
 
-st.markdown(
-    """
-    <style>
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     """
+#     <style>
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+local_css(Path(__file__).parents[1]/"assets/css/style.css")
 
 login_page = st.Page(login, title="Log In", icon=":material/login:")
 logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")

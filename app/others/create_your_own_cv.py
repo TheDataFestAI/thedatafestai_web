@@ -1,5 +1,7 @@
 import streamlit as st
+from pathlib import Path
 import pandas as pd
+
 from utils.write_data import generate_pdf
 
 
@@ -22,10 +24,10 @@ def add_cv_details():
     st.session_state.diy_cv_data = pd.concat([st.session_state.diy_cv_data, new_diy_cv_data_df])
     
     cv_content = str(st.session_state.diy_cv_data.to_json(orient='records'))
-    st.session_state.cv_pdf_out_file_name = generate_pdf(file_name="sample_cv_1.pdf", content=cv_content)
+    st.session_state.cv_pdf_out_file_name = generate_pdf(file_name="sample_cv.pdf", content=cv_content)
+    print(f"st.session_state.cv_pdf_out_file_name: {st.session_state.cv_pdf_out_file_name}")
     # st.html(f'<a href="{out_file_name}" download="{out_file_name.split("/")[-1]}">Download</a>')
     # st.html(f'<a href="" download="sample_cv.pdf" target="_blank">Download</a>')
-    
 
 
 # Web Page Design
@@ -125,4 +127,4 @@ with col1:
                 mime="application/octet-stream"
             )
 
-st.dataframe(st.session_state.diy_cv_data)
+# st.dataframe(st.session_state.diy_cv_data)
