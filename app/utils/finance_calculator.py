@@ -28,11 +28,11 @@ def emi_calculator(loan_amount, yearly_interest_rate, months, rounding = 1):
             # print(f'{i+1}-months: emi: {out["emi_monthly"]}, interest: {interest_part}, principle: {principle_part}, balance: {principle_balance}')
     return out
 
-def loan_eligibility(monthly_income):
+def monthly_emi_loan_eligibility(monthly_income, loan_tenure, current_interest):
     out = {}
     out["eligible_monthly_emi"] = monthly_income * 0.6
-    out["interest"] = 9
-    out["months"] = 25*12
+    out["interest"] = current_interest
+    out["months"] = loan_tenure*12
     out["principle"] = 3500000
     out["monthly_emi"] = emi_calculator(out["principle"], out["interest"], out["months"]).get("emi_monthly", 0)
     

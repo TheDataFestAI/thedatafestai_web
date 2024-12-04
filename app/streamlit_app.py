@@ -34,13 +34,15 @@ def login():
     col1, col2, col3 = st.columns([2, 2, 2])
     with col1:
         st.text_input("Full Name", placeholder="Ramesh Gupta")
-        if st.button("Log In"):
-            st.session_state.logged_in = True
-            st.rerun()
     with col2:
         st.text_input("Mobile Number", placeholder="88****6464")
     with col3:
         st.text_input("Email Address", placeholder="something@gmail.com")
+    col1, col2, col3 = st.columns([2, 2, 2])
+    with col1:   
+        if st.button("Log In"):
+            st.session_state.logged_in = True
+            st.rerun()
         
 def logout():
     st.markdown("### Do you want to logout from TheDataFestAI?")
