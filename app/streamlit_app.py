@@ -17,12 +17,14 @@ from learning_module.ds_module_pages import (
 # print(st.session_state)
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
+    
+if "tdf_product" not in st.session_state:
+    st.session_state.tdf_product = None
+    
+# TDF_PRODUCTS = [None, "Learn Data Analyst", "Learn Data Engineer", "Learn Devops Engineer", "Learn Data Scientist", "Other Apps"]
 
 if "cv_pdf_out_file_name" not in st.session_state:
     st.session_state.cv_pdf_out_file_name = False
-    
-# if "sidebar_state" not in st.session_state:
-#     st.session_state.sidebar_state = "expanded"
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -42,6 +44,7 @@ def login():
     with col1:   
         if st.button("Log In"):
             st.session_state.logged_in = True
+            # st.session_state.tdf_product = None
             st.rerun()
         
 def logout():
@@ -49,6 +52,7 @@ def logout():
     st.html("<h4>If yes, then click on below button -</h4>")
     if st.button("Log Out"):
         st.session_state.logged_in = False
+        st.session_state.tdf_product = None
         st.session_state.cv_pdf_out_file_name = False
         st.rerun()
 
@@ -93,32 +97,62 @@ finance_home_page = st.Page("finance_module/finance_home_page.py", title="Financ
 create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:")
 data_links_page = st.Page("others/data_links_page.py", title="Free Data Source Links", icon=":material/thumb_up:")
 
+account_pages = [logout_page, home, developer_details]
+learn_python_pages = [python_class_page, python_global_local_variable_page, python_decorator_page, python_unittest_page, python_pandas_page]
+learn_data_engineer_pages = learn_python_pages
+learn_devops_engineer_pages = [devops_docker_page]
+learn_data_scientist_pages = [ds_home_page]
+finance_apps = [finance_home_page]
+tdf_apps = [create_your_own_cv_page]
 
-if st.session_state.logged_in:
-    pg = st.navigation(
-        {
-            "🏚️ Account -": [logout_page, home, developer_details],
-            "🐍 Python Learning Module -": [python_class_page, 
-                                            python_global_local_variable_page, 
-                                            python_decorator_page,
-                                            python_unittest_page,
-                                            python_pandas_page
-                                            ],
-            "🎢 Dev-Ops -": [devops_docker_page],
-            "🪐 Data Science -": [ds_home_page],
-            "💲 Finance_Module -": [finance_home_page],
-            "🎲 Data Sources -": [data_links_page],
-            "🎯 Apps -": [create_your_own_cv_page]
-        },
-        # position="hidden"      
-    )
+# st.logo(image=Path(__file__).parents[1]/"assets/images/thedatafestai_logo.png", size="large")
+page_dict = {}
+if st.session_state.tdf_product in ["Learn Data Engineer", "Learn Data Scientist"]:
+    page_dict["🐍 Learn Python -"] = learn_python_pages
+if st.session_state.tdf_product in ["Learn Data Scientist"]:
+    page_dict["🪐 Learn Data Science -"] = learn_data_scientist_pages
+if st.session_state.tdf_product in ["Learn Devops Engineer"]:
+    page_dict["🎢 Learn Devops -"] = learn_devops_engineer_pages
+if st.session_state.tdf_product in ["Finance Apps"]:
+    page_dict["💲 Finance_Module -"] = finance_apps
+if st.session_state.tdf_product in ["Other Apps"]:
+    page_dict["🎯 TDF Apps -"] = tdf_apps
+    
+    
+# print(f"page_dict: {page_dict}")
+if st.session_state.logged_in and len(page_dict) == 0:
+    pg = st.navigation({"🏚️ Account -": account_pages})
+elif len(page_dict) > 0:
+    pg = st.navigation({"🏚️ Account -": account_pages} | page_dict)
 else:
-    # pg = st.navigation([login_page])
-    pg = st.navigation(
-        {
-            "Account": [login_page, home, developer_details]
-        }
-    )
+    pg = st.navigation({"🏚️ Account -": [login_page, developer_details]})
+
+
+# if st.session_state.logged_in:
+#     pg = st.navigation(
+#         {
+#             "🏚️ Account -": [logout_page, home, developer_details],
+#             # "🐍 Python Learning Module -": [python_class_page, 
+#             #                                 python_global_local_variable_page, 
+#             #                                 python_decorator_page,
+#             #                                 python_unittest_page,
+#             #                                 python_pandas_page
+#             #                                 ],
+#             # "🎢 Dev-Ops -": [devops_docker_page],
+#             # "🪐 Data Science -": [ds_home_page],
+#             # "💲 Finance_Module -": [finance_home_page],
+#             # "🎲 Data Sources -": [data_links_page],
+#             # "🎯 Apps -": [create_your_own_cv_page]
+#         },
+#         # position="hidden"      
+#     )
+# else:
+#     # pg = st.navigation([login_page])
+#     pg = st.navigation(
+#         {
+#             "Account": [login_page, developer_details]
+#         }
+#     )
 
 pg.run()
     

@@ -6,7 +6,7 @@ from utils.finance_calculator import emi_calculator, monthly_emi_loan_eligibilit
 st.title("Finance Module", anchor=False)
 st.html("<hr>")
 
-with st.expander("How Much Monthly EMI You Can Afford And Check Eligibility:"):
+with st.expander("Check Monthly EMI Affordibility:"):
     st.html("<h5>Please use below Monthly EMI Eligibility Calculator </h5>")
     with st.form("loan_eligibility_calculator"):
         age = st.number_input("Your Age -", value=25)
