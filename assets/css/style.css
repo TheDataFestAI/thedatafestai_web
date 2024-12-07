@@ -5,3 +5,14 @@ div[data-testid="stExpander"] details summary span div[data-testid="stMarkdownCo
 /* div[data-testid="stExpander"] details:hover summary{
     background-color: rgba(17, 6, 3, 0.1);
 } */
+
+/* below style is working but it is got strike out due to local style, please check further */
+div[data-testid="stSidebarContent"] div[data-testid="stSidebarNav"] ul[data-testid="stSidebarNavItems"] header[data-testid="stNavSectionHeader"] {
+    font-size: 0.875em; /* 14px/16=0.875em */
+}
+
+.st-emotion-cache-uk6ql5.eczjsme2{
+    font-size:  1.5rem;
+    color: blueviolet;
+    background: rgb(202, 235, 229);
+}

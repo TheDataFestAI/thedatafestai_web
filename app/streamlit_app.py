@@ -103,7 +103,6 @@ learn_data_engineer_pages = learn_python_pages
 learn_devops_engineer_pages = [devops_docker_page]
 learn_data_scientist_pages = [ds_home_page]
 finance_apps = [finance_home_page]
-tdf_apps = [create_your_own_cv_page]
 
 # st.logo(image=Path(__file__).parents[1]/"assets/images/thedatafestai_logo.png", size="large")
 page_dict = {}
@@ -116,7 +115,9 @@ if st.session_state.tdf_product in ["Learn Devops Engineer"]:
 if st.session_state.tdf_product in ["Finance Apps"]:
     page_dict["💲 Finance_Module -"] = finance_apps
 if st.session_state.tdf_product in ["Other Apps"]:
-    page_dict["🎯 TDF Apps -"] = tdf_apps
+    page_dict["🎯 TDF Apps -"] = [create_your_own_cv_page]
+if st.session_state.tdf_product in ["Public Data Sources"]:
+    page_dict["🎲 Data Sources -"] = [data_links_page]
     
     
 # print(f"page_dict: {page_dict}")
