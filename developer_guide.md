@@ -33,6 +33,20 @@
     pip install -r .\requirements.txt
     ```
 
+# Connect to Other Resources:
+1. **MongoDB with VScode:**
+    <br>Ref: https://www.mongodb.com/docs/mongodb-vscode/playgrounds/
+    1. Click on "View" and open "Command Palette."
+    2. Search "MongoDB: Connect" on the Command Palette and click on "Connect with Connection String."
+    3. Paste your connection string into the Command Palette.
+        ```
+        mongodb+srv://<user_name>:<db_password>@<cluster_name>.xmoc8.mongodb.net/
+        ```
+    4. Click “Create New Playground” in MongoDB for VS Code to get started
+2. Mongodb Atlas with Compass:
+    1. installCompass: https://downloads.mongodb.com/compass/mongodb-compass-1.45.0-win32-x64.exe
+    2. copy: mongodb+srv://<user_name>:<db_password>@<cluster_name>.xmoc8.mongodb.net/
+
 # Step 3: Run the code:
     ```shell
     streamlit run .\app\streamlit_app.py

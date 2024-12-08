@@ -5,7 +5,7 @@ import streamlit as st
 
 
 def home_pg():
-    st.title("Welcome to TheDataFestAI", anchor=False)
+    st.title("Welcome to TheDataFestAI (*TDF)", anchor=False)
     st.caption("Learn and explore new technologies and tools in easy and efficient way.")
 
     st.markdown("### Follow Our Learning Modules:")
@@ -36,16 +36,18 @@ def home_pg():
     # print(f"st.session_state.tdf_product: {st.session_state.tdf_product}")
 
     st.html("<br>")
-    st.markdown("### Follow Our Other Apps:")
+    st.markdown("### Follow TDF's Apps:")
     col1, col2, col3, col4 = st.columns([2,2,2,2])
     col1.image("https://github.com/user-attachments/assets/77a34805-bfef-41cc-b255-699b66d6f1c7", caption="Finance Calculator (EMI)")
     col2.image("https://github.com/user-attachments/assets/ff47dc01-cb80-4162-a052-3cd8038ec7f1", caption="Create CV/Resume")
     col3.image("https://github.com/user-attachments/assets/d753e34b-596f-4aa9-b95a-039461adcd7a", caption="Public Data Links")
+    col4.image("https://github.com/user-attachments/assets/b2e6af72-255d-4335-ae89-5b014fc2507f", caption="Compare Cloud Services")
 
     col1, col2, col3, col4 = st.columns([3,3,3,3])
     btn_home_finance_calculator = col1.button("Finance Calculator")
     btn_home_create_cv = col2.button("Create CV")
     btn_home_public_data = col3.button("Public Data Sources")
+    btn_compare_cloud_services = col4.button("Compare")
     if btn_home_finance_calculator:
         st.session_state.tdf_product = "Finance Apps"
         st.rerun()
@@ -54,6 +56,9 @@ def home_pg():
         st.rerun()
     if btn_home_public_data:
         st.session_state.tdf_product = "Public Data Sources"
+        st.rerun()
+    if btn_compare_cloud_services:
+        st.session_state.tdf_product = "Compare Cloud Services"
         st.rerun()
     st.html("<hr>")
     # st.markdown("<h1 style='text-align: center; color: red;'>Some title</h1>", unsafe_allow_html=True)

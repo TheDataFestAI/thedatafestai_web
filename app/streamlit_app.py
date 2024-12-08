@@ -92,10 +92,11 @@ devops_docker_page = st.Page(devops_docker_pg, title="Docker", icon=":material/c
 
 ds_home_page = st.Page(ds_home_pg, title="Data Science - Home", icon=":material/call_made:")
 
-finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/call_made:")
+finance_home_page = st.Page("finance_module/finance_home_page.py", title="Finance - Home", icon=":material/call_made:", default=(st.session_state.tdf_product == "Finance Apps"))
 
-create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:")
+create_your_own_cv_page = st.Page("others/create_your_own_cv.py", title="Create Your CV", icon=":material/thumb_up:", default=(st.session_state.tdf_product == "Compare Cloud Services"))
 data_links_page = st.Page("others/data_links_page.py", title="Free Data Source Links", icon=":material/thumb_up:")
+compare_cloud_services_page = st.Page("others/compare_cloud_services.py", title="Compare Cloud Services", icon=":material/thumb_up:")
 
 account_pages = [logout_page, home, developer_details]
 learn_python_pages = [python_class_page, python_global_local_variable_page, python_decorator_page, python_unittest_page, python_pandas_page]
@@ -115,9 +116,13 @@ if st.session_state.tdf_product in ["Learn Devops Engineer"]:
 if st.session_state.tdf_product in ["Finance Apps"]:
     page_dict["💲 Finance_Module -"] = finance_apps
 if st.session_state.tdf_product in ["Other Apps"]:
+    home._default = False
+    create_your_own_cv_page._default = True
     page_dict["🎯 TDF Apps -"] = [create_your_own_cv_page]
 if st.session_state.tdf_product in ["Public Data Sources"]:
     page_dict["🎲 Data Sources -"] = [data_links_page]
+if st.session_state.tdf_product in ["Compare Cloud Services"]:
+    page_dict["🌨️ Cloud Resources -"] = [compare_cloud_services_page]
     
     
 # print(f"page_dict: {page_dict}")
