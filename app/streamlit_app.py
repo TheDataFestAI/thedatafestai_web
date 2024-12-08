@@ -128,7 +128,7 @@ if st.session_state.tdf_product in ["Compare Cloud Services"]:
 # print(f"page_dict: {page_dict}")
 if st.session_state.logged_in and len(page_dict) == 0:
     pg = st.navigation({"🏚️ Account -": account_pages})
-elif len(page_dict) > 0:
+elif st.session_state.logged_in and len(page_dict) > 0:
     pg = st.navigation({"🏚️ Account -": account_pages} | page_dict)
 else:
     pg = st.navigation({"🏚️ Account -": [login_page, developer_details]})
