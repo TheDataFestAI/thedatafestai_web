@@ -46,6 +46,8 @@
 2. Mongodb Atlas with Compass:
     1. installCompass: https://downloads.mongodb.com/compass/mongodb-compass-1.45.0-win32-x64.exe
     2. copy: mongodb+srv://<user_name>:<db_password>@<cluster_name>.xmoc8.mongodb.net/
+3. Backblaze Python SDK -
+    1. https://b2-sdk-python.readthedocs.io/en/master/quick_start.html#by-name
 
 # Step 3: Run the code:
     ```shell

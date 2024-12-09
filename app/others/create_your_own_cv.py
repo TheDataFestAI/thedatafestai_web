@@ -1,12 +1,12 @@
 import streamlit as st
 from pathlib import Path
 import pandas as pd
-
-from utils.write_data import generate_pdf
-from utils.backblaze_bucket_read_write import (
+# from utils.write_data import generate_pdf
+from utils.backblaze_utils import (
     upload_file_into_backblaze, 
     download_file_from_backblaze
 )
+from utils.gen_pdf import generate_pdf_content_from_dict
 
 
 if ("cv_data" not in st.session_state 
@@ -26,12 +26,12 @@ def add_cv_details():
     st.session_state.cv_data['personal_details']["p_email_id"] = cv_p_email_id
     st.session_state.cv_data['personal_details']["s_mob_no"] = cv_s_mob_no
     st.session_state.cv_data['personal_details']["s_email_id"] = cv_s_email_id
-    st.session_state.cv_data['personal_details']["cv_dob"] = cv_dob
+    st.session_state.cv_data['personal_details']["cv_dob"] = str(cv_dob)
     st.session_state.cv_data['personal_details']["cv_gender"] = cv_gender
     st.session_state.cv_data['personal_details']["cv_nationality"] = cv_nationality
     st.session_state.cv_data['personal_details']["cv_religion"] = cv_religion
     st.session_state.cv_data['personal_details']["cv_caste"] = cv_caste
-    st.session_state.cv_data['personal_details']["cv_yrs_of_expr"] = cv_yrs_of_expr
+    st.session_state.cv_data['personal_details']["cv_yrs_of_expr"] = str(cv_yrs_of_expr)
     
     st.session_state.cv_data['education_details'] = dict()
     for i in range(5):
@@ -39,6 +39,25 @@ def add_cv_details():
         st.session_state.cv_data['education_details']["edu_from_to_"+str(i)] = st.session_state.get("edu_from_to_"+str(i))
         st.session_state.cv_data['education_details']["edu_brd_uni_name_"+str(i)] = st.session_state.get("edu_brd_uni_name_"+str(i))
         st.session_state.cv_data['education_details']["edu_grade_"+str(i)] = st.session_state.get("edu_grade_"+str(i))
+    
+    st.session_state.cv_data['prev_expr_details'] = []
+    for i in range(num_of_prev_organisation):
+        cv_prev_expr_dict = dict()
+        cv_prev_expr_dict["org_name"] = st.session_state.get("org_name_"+str(i))
+        cv_prev_expr_dict["org_start_date"] = st.session_state.get("org_start_date_"+str(i)) 
+        cv_prev_expr_dict["org_end_date"] = st.session_state.get("org_end_date_"+str(i))
+        cv_prev_expr_dict["org_proj_name"] = st.session_state.get("org_proj_name_"+str(i)) 
+        cv_prev_expr_dict["org_proj_client_name"] = st.session_state.get("org_proj_client_name_"+str(i)) 
+        cv_prev_expr_dict["org_proj_count_teammember"] = st.session_state.get("org_proj_count_teammember_"+str(i)) 
+        cv_prev_expr_dict["org_job_summary"] = st.session_state.get("org_job_summary_"+str(i))
+        st.session_state.cv_data['prev_expr_details'].append(cv_prev_expr_dict)
+    
+    file_name = st.session_state.cv_data['personal_details']["cv_first_name"] + "_resume.pdf" 
+    out_file_path = generate_pdf_content_from_dict(st.session_state.cv_data, file_name)
+    b2_fileid = upload_file_into_backblaze(out_file_path, "tdf-app-bucket")
+    st.session_state.cv_data["b2_fileid"] = b2_fileid
+    st.session_state.cv_data["b2_filename"] = file_name
+    # print(f"{file_name=}, {b2_fileid=}")
     
     # new_diy_cv_data_df = new_diy_cv_personal_data_df.copy()
     # st.session_state.diy_cv_data = pd.concat([st.session_state.diy_cv_data, new_diy_cv_data_df])
@@ -128,7 +147,6 @@ if num_of_prev_organisation > 0:
             col2.text_input("Client Name", placeholder="HSBC Bank", key ="org_proj_client_name_"+str(i))
             col3.text_input("No: of Team Member", placeholder="5", key ="org_proj_count_teammember_"+str(i))
             # st.markdown("<br>", unsafe_allow_html=True)
-            
             st.text_area("Provide Job Summary", key ="org_job_summary_"+str(i))
 
 col1, col2, col3 = st.columns([2,2,2]) 
@@ -139,21 +157,21 @@ col3.write("")
 
 col1, col2, col3 = st.columns([2,2,2]) 
 with col1:  
-    if submitted and st.session_state.cv_pdf_out_file_name:
-        with open(st.session_state.cv_pdf_out_file_name, "rb") as pdf_fp:
-            btn = st.download_button(
-                label="Download CV in PDF",
-                data = pdf_fp,
-                file_name="sample_cv.pdf",
-                mime="application/octet-stream"
-            )
+    if submitted and st.session_state.cv_data.get("b2_fileid", None):
+        # with open(st.session_state.cv_pdf_out_file_name, "rb") as pdf_fp:
+        #     btn = st.download_button(
+        #         label="Download CV in PDF",
+        #         data = pdf_fp,
+        #         file_name="sample_cv.pdf",
+        #         mime="application/octet-stream"
+        #     )
         
-        # btn = st.download_button(
-        #     label="Download CV in PDF",
-        #     data = download_file_from_backblaze(),
-        #     file_name="sample_cv.pdf",
-        #     mime="application/octet-stream"
-        # )
+        btn = st.download_button(
+            label="Download CV in PDF",
+            data = download_file_from_backblaze(st.session_state.cv_data["b2_fileid"]),
+            file_name=st.session_state.cv_data["b2_filename"],
+            mime="application/octet-stream"
+        )
 
 # st.dataframe(st.session_state.diy_cv_data)
 
