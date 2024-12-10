@@ -57,6 +57,7 @@ def add_cv_details():
     b2_fileid = upload_file_into_backblaze(out_file_path, "tdf-app-bucket")
     st.session_state.cv_data["b2_fileid"] = b2_fileid
     st.session_state.cv_data["b2_filename"] = file_name
+    st.session_state.cv_data["out_file_path"] = out_file_path
     # print(f"{file_name=}, {b2_fileid=}")
     
     # new_diy_cv_data_df = new_diy_cv_personal_data_df.copy()
@@ -166,12 +167,14 @@ with col1:
         #         mime="application/octet-stream"
         #     )
         
-        btn = st.download_button(
-            label="Download CV in PDF",
-            data = download_file_from_backblaze(st.session_state.cv_data["b2_fileid"]),
-            file_name=st.session_state.cv_data["b2_filename"],
-            mime="application/octet-stream"
-        )
+        with open(st.session_state.cv_data["out_file_path"], "rb") as pdf_fp:
+            btn = st.download_button(
+                label="Download CV in PDF",
+                # data = download_file_from_backblaze(st.session_state.cv_data["b2_fileid"]),
+                data = pdf_fp,
+                file_name=st.session_state.cv_data["b2_filename"]
+                # mime="application/octet-stream"
+            )
 
 # st.dataframe(st.session_state.diy_cv_data)
 
